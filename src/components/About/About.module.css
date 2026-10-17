@@ -1,0 +1,148 @@
+.aboutSection {
+  padding: 5.5rem 0;
+  position: relative;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.storyGrid {
+  display: grid;
+  grid-template-columns: 1.35fr 0.85fr;
+  gap: 2.5rem;
+  align-items: stretch;
+}
+
+.narrativeCol {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.storyLetter {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 2.75rem;
+  border-radius: 20px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-warm);
+}
+
+.chapterHeading {
+  font-size: 1.65rem;
+  line-height: 1.35;
+  color: #fff;
+  margin-bottom: 1.75rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: 1.25rem;
+}
+
+.paragraph {
+  font-size: 1.02rem;
+  line-height: 1.8;
+  color: var(--color-text-secondary);
+  margin-bottom: 1.5rem;
+}
+
+.paragraph:last-child {
+  margin-bottom: 0;
+}
+
+.paragraph strong {
+  color: #fff;
+  font-weight: 700;
+}
+
+.paragraph em {
+  color: var(--accent-amber);
+  font-style: normal;
+  font-weight: 600;
+}
+
+/* Sidebar */
+.sidebarCol {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.principlesCard {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: rgba(14, 18, 26, 0.85);
+  border: 1px solid var(--border-warm);
+  border-radius: 18px;
+  padding: 1.75rem;
+}
+
+.principlesHeader {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--accent-amber);
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  padding-bottom: 0.75rem;
+}
+
+.principlesList {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+  gap: 1.25rem;
+}
+
+.principleItem {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.principleNum {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: var(--accent-amber);
+  background: rgba(245, 158, 11, 0.1);
+  padding: 0.2rem 0.5rem;
+  border-radius: 6px;
+  border: 1px solid rgba(245, 158, 11, 0.2);
+}
+
+.principleTitle {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 0.35rem;
+}
+
+.principleDesc {
+  font-size: 0.86rem;
+  line-height: 1.55;
+  color: var(--color-text-secondary);
+}
+
+@media (max-width: 992px) {
+  .storyGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .storyLetter {
+    padding: 1.75rem;
+  }
+  .chapterHeading {
+    font-size: 1.35rem;
+  }
+  .paragraph {
+    font-size: 0.95rem;
+  }
+}

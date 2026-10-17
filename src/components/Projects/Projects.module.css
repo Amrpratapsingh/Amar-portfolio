@@ -1,0 +1,290 @@
+.projectsSection {
+  padding: 5.5rem 0;
+  position: relative;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 3.5rem;
+}
+
+/* Dossier Bento Grid */
+.bentoGrid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 2.25rem;
+}
+
+.dossierCard {
+  grid-column: span 6;
+  padding: 2.5rem 2.25rem 2rem;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-warm);
+  border-radius: 4px 18px 18px 18px;
+}
+
+.cardFeatured {
+  grid-column: span 6;
+}
+
+/* Physical Folder Tab Header */
+.folderTab {
+  position: absolute;
+  top: -18px;
+  left: 18px;
+  background: #1e2433;
+  border: 1px solid var(--border-warm);
+  border-bottom: none;
+  padding: 0.25rem 0.85rem;
+  border-radius: 6px 6px 0 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.folderIcon {
+  font-size: 0.8rem;
+}
+
+.folderFileId {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--accent-amber);
+  letter-spacing: 0.8px;
+}
+
+.folderGrommet {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #475569;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.cardTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+  margin-top: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.cardHeaderLeft {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.iconWrap {
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-warm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  flex-shrink: 0;
+}
+
+.categoryLabel {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--accent-amber);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  display: block;
+  font-family: var(--font-mono);
+  margin-bottom: 0.2rem;
+}
+
+.projectTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.3px;
+}
+
+.badgeGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.35rem;
+}
+
+.metricBadge {
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #e2e8f0;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0.25rem 0.65rem;
+  border-radius: 30px;
+  font-family: var(--font-mono);
+}
+
+.metricHighlight {
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: #0b0d12;
+  background: var(--accent-amber);
+  padding: 0.25rem 0.65rem;
+  border-radius: 30px;
+  font-family: var(--font-mono);
+  box-shadow: 0 0 12px rgba(245, 158, 11, 0.25);
+}
+
+.projectDesc {
+  color: var(--color-text-secondary);
+  font-size: 0.94rem;
+  line-height: 1.65;
+  margin-bottom: 1rem;
+}
+
+/* Handwritten Developer Margin Note */
+.handwrittenMargin {
+  background: rgba(254, 240, 138, 0.06);
+  border-left: 2px solid var(--accent-amber);
+  padding: 0.65rem 0.9rem;
+  border-radius: 0 8px 8px 0;
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.pencilIcon {
+  color: var(--accent-amber);
+  font-size: 0.85rem;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+
+.noteContent {
+  font-family: var(--font-handwriting);
+  font-size: 1.15rem;
+  color: #fde047;
+  line-height: 1.25;
+}
+
+.featureList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1.75rem;
+  background: rgba(255, 255, 255, 0.02);
+  padding: 0.9rem 1rem;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.featureItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.55rem;
+  font-size: 0.82rem;
+  color: #cbd5e1;
+  line-height: 1.45;
+}
+
+.featureBullet {
+  color: var(--accent-amber);
+  font-size: 0.65rem;
+  margin-top: 0.15rem;
+}
+
+.cardFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: auto;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  flex-wrap: wrap;
+}
+
+.techStack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  flex: 1;
+}
+
+.techBadge {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-warm);
+  color: var(--color-text-secondary);
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.25rem 0.65rem;
+  border-radius: 6px;
+  font-family: var(--font-mono);
+}
+
+.dossierCard:hover .techBadge {
+  border-color: var(--border-warm-hover);
+  color: #fff;
+}
+
+.liveButton {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: #0b0d12;
+  border: none;
+  padding: 0.5rem 1.15rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 10px rgba(245, 158, 11, 0.3);
+  white-space: nowrap;
+}
+
+.liveButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 18px rgba(245, 158, 11, 0.5);
+}
+
+.arrowIcon {
+  font-size: 0.85rem;
+  transition: transform 0.2s ease;
+}
+
+.liveButton:hover .arrowIcon {
+  transform: translate(2px, -2px);
+}
+
+@media (max-width: 1024px) {
+  .dossierCard {
+    grid-column: span 12;
+  }
+}
+
+@media (max-width: 768px) {
+  .projectsSection {
+    padding: 3.5rem 0;
+  }
+  .dossierCard {
+    padding: 2rem 1.5rem 1.5rem;
+  }
+  .cardTop {
+    flex-direction: column;
+  }
+  .badgeGroup {
+    align-items: flex-start;
+  }
+  .cardFooter {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

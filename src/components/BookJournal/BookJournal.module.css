@@ -1,0 +1,316 @@
+/* 3D Continuous Scroll-Driven Book Journal */
+.journalUniverse {
+  position: relative;
+  width: 100%;
+  background-color: #0b0d12;
+}
+
+/* Sticky 3D Viewport Stage */
+.stickyStage {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  perspective: 1800px;
+  perspective-origin: 50% 20%;
+  background: radial-gradient(circle at 50% 15%, #0e1320 0%, #06080d 100%);
+}
+
+/* Top Journal Binder Spine */
+.topJournalSpine {
+  position: absolute;
+  top: 64px; /* Sits right beneath standard 64px navbar */
+  left: 0;
+  right: 0;
+  height: 8px;
+  z-index: 55;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.spineLeather {
+  width: 90%;
+  max-width: 1200px;
+  height: 100%;
+  background: linear-gradient(180deg, #1b2130 0%, #0d121c 100%);
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.8);
+  border-radius: 4px 4px 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2.5rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6);
+}
+
+.spineRivets {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.rivetDot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #f59e0b;
+  box-shadow: 0 0 5px rgba(245, 158, 11, 0.7), inset 0 1px 1px #fff;
+}
+
+/* 3D Pages Deck */
+.pagesDeck {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+}
+
+/* Individual Journal Sheet - 100% Solid Opaque Dark Artisan Paper */
+.journalSheet {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform-origin: top center;
+  transform-style: preserve-3d;
+  background-color: #0b0d12;
+  background-image: 
+    radial-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(180deg, #0d111a 0%, #080a0f 100%);
+  background-size: 24px 24px, 100% 100%;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.85);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Sheet Internal Scroll Area */
+.sheetContentScroll {
+  width: 100%;
+  height: 100%;
+  padding-top: 76px; /* offset for navbar & binder spine */
+  padding-bottom: 7rem; /* generous breathing room so bottom content is fully visible */
+  overflow-y: hidden; /* Programmatically driven by unified window scroll */
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Subtle Artisan Reading Progress Indicator for long content */
+.sectionScrollHint {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 45;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.4rem 0.9rem;
+  background: rgba(12, 16, 24, 0.88);
+  border: 1px solid rgba(245, 158, 11, 0.25);
+  border-radius: 20px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+  pointer-events: none;
+  animation: fadeInHint 0.3s ease;
+  transition: opacity 0.2s ease-out;
+}
+
+@keyframes fadeInHint {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 8px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+.scrollHintText {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #fbbf24;
+  letter-spacing: 0.4px;
+}
+
+.scrollHintBar {
+  width: 90px;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.scrollHintFill {
+  height: 100%;
+  background: linear-gradient(90deg, #f59e0b, #fbbf24);
+  border-radius: 2px;
+  transition: width 0.15s ease-out;
+}
+
+/* Dynamic Paper Shadow when turning up */
+.pageTurnShadow {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    transparent 20%,
+    rgba(0, 0, 0, 0.25) 50%,
+    rgba(0, 0, 0, 0.75) 100%
+  );
+  pointer-events: none;
+  z-index: 100;
+  transition: opacity 0.08s ease-out;
+}
+
+/* Dynamic Incoming Shadow that lifts off */
+.incomingPaperShadow {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.75) 0%,
+    rgba(0, 0, 0, 0.4) 35%,
+    transparent 75%
+  );
+  pointer-events: none;
+  z-index: 100;
+  transition: opacity 0.05s linear;
+}
+
+/* Floating Journal Bookmark / Chapter Tracker */
+.journalBookmark {
+  position: absolute;
+  right: 1.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 60;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 1.25rem;
+  background: rgba(13, 17, 25, 0.82);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  padding: 1.15rem 0.95rem;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  transition: all 0.3s ease;
+}
+
+.bookmarkHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  padding-bottom: 0.65rem;
+  width: 100%;
+}
+
+.bookmarkChapter {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: var(--accent-amber);
+  letter-spacing: 1px;
+}
+
+.bookmarkTitle {
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: #fff;
+  white-space: nowrap;
+}
+
+/* Dots Tracker */
+.pageDots {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.pageDotBtn {
+  position: relative;
+  background: none;
+  border: none;
+  padding: 0.2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dotShape {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.25);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.pageDotBtn:hover .dotShape {
+  background: #fff;
+  transform: scale(1.3);
+}
+
+.pageDotBtn.activeDot .dotShape {
+  width: 8px;
+  height: 18px;
+  border-radius: 6px;
+  background: var(--accent-amber);
+  box-shadow: 0 0 10px rgba(245, 158, 11, 0.6);
+}
+
+.dotTooltip {
+  position: absolute;
+  right: 1.75rem;
+  top: 50%;
+  transform: translateY(-50%) translateX(10px);
+  background: rgba(15, 20, 30, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0.3rem 0.6rem;
+  border-radius: 6px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #fff;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: all 0.2s ease;
+}
+
+.pageDotBtn:hover .dotTooltip {
+  opacity: 1;
+  transform: translateY(-50%) translateX(0);
+}
+
+/* Mobile Fallback */
+.mobileFlow {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.mobilePage {
+  width: 100%;
+}
+
+@media (max-width: 860px) {
+  .journalBookmark {
+    display: none;
+  }
+  .topJournalSpine {
+    display: none;
+  }
+}
